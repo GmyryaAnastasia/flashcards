@@ -1,0 +1,65 @@
+@mixin typoghraphy($fontSize,$fontStyle,$fontWeight,$lineHeight) {
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  line-height: $lineHeight;
+  color: var(--color-text-primary);
+}
+
+.large {
+  @include typoghraphy(var(--font-size-xxl), var(--font-weight-bold), var(--line-height-l))
+}
+
+.h1 {
+  @include typoghraphy(var(--font-size-xl), var(--font-weight-bold), var(--line-height-l))
+}
+
+.h2 {
+  @include typoghraphy(var(--font-size-l), var(--font-weight-bold), var(--line-height-m))
+}
+
+.h3 {
+  @include typoghraphy(var(--font-size-m), var(--font-weight-bold), var(--line-height-m))
+}
+
+.body1 {
+  @include typoghraphy(var(--font-size-m), var(--font-weight-regular), var(--line-height-m))
+}
+
+.subtitle1 {
+  @include typoghraphy(var(--font-size-m), var(--font-weight-bold), var(--line-height-m))
+}
+
+.body2 {
+  @include typoghraphy(var(--font-size-s), var(--font-weight-regular), var(--line-height-m))
+}
+
+.subtitle2 {
+  @include typoghraphy(var(--font-size-s), var(--font-weight-bold), var(--line-height-m))
+}
+
+.caption {
+  @include typoghraphy(var(--font-size-xs), var(--font-weight-regular), var(--line-height-s))
+}
+
+.overline {
+  @include typoghraphy(var(--font-size-xs), var(--font-weight-bold), var(--line-height-s))
+}
+
+.link1,
+.link1:visited{
+  @include typoghraphy(var(--font-size-s), var(--font-weight-bold), var(--line-height-m));
+
+  cursor: pointer;
+  color: var(--color-text-link);
+  text-decoration: underline;
+}
+
+.link2,
+.link2:visited{
+  @include typoghraphy(var(--font-size-xs), var(--font-weight-bold), var(--line-height-s));
+
+  cursor: pointer;
+  color: var(--color-text-link);
+  text-decoration: underline;
+}
+
