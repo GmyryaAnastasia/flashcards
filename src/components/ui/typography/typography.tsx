@@ -21,12 +21,12 @@ export type TextProps<T extends ElementType = 'p'>={
     className:string
 } & ComponentPropsWithoutRef<T>
 
-export const Typoghraphy=<T extends ElementType = 'p'>(
+export const Typography=<T extends ElementType = 'p'>(
     {as, className, variant = 'body1', ...restProps}: TextProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof TextProps<T>>
 )=>{
-    const classNames = clsx(s.text, s[variant], className)
+
     const Component = as || 'p'
     return (
-        <Component className={classNames} {...restProps}  />
+        <Component className={`${s[variant]} ${className}`} {...restProps}  />
     )
 }

@@ -1,4 +1,4 @@
-@mixin typoghraphy($fontSize,$fontStyle,$fontWeight,$lineHeight) {
+@mixin typoghraphy($fontSize,$fontWeight,$lineHeight) {
   font-size: $fontSize;
   font-weight: $fontWeight;
   line-height: $lineHeight;
