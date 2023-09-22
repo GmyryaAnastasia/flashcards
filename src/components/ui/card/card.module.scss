@@ -1,12 +1,9 @@
-.root{
-  flex-shrink: 0;
-
+.root {
   width: 420px;
   height: 552px;
 
-  background-color: var(--color-bg-paper);
+  background-color: var(--color-dark-700);
   filter: drop-shadow(-1px -1px 2px rgb(0 0 0 / 10%)) drop-shadow(1px 1px 2px rgb(0 0 0 / 10%));;
-
-  stroke: #313131;
-  stroke-width: 1px;
+  border-color: red;
+  border-radius: 1px;
 }
