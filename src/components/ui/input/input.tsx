@@ -11,11 +11,11 @@ type InputProps = {
     onValueChange?: (value: string) => void
     type?: string
     placeholder?: string
-    error?: string
+    errorMessage?: string
     title?: string
 } & ComponentPropsWithoutRef<'input'>
 
-export const Input = ({type, placeholder, error, title, onValueChange, onChange}: InputProps) => {
+export const Input = ({type, placeholder, errorMessage, title, onValueChange, onChange}: InputProps) => {
     const [showPassword, setShowPassword] = useState<boolean>(false)
     let isPasswordButtonShow = false
     let isSearchButtonShow = false
@@ -31,27 +31,28 @@ export const Input = ({type, placeholder, error, title, onValueChange, onChange}
         onValueChange(e.target.value)
     }
 
+
     return (
 
         <div className={s.root}>
             <div>
-                <Typography variant={'body2'} className={''}>{title}</Typography>
+                <Typography variant={'body2'} className={s.label}>{title}</Typography>
             </div>
             <div className={s.fieldContainer}>
                 <input type={showPassword ? 'text' : type} placeholder={placeholder} onChange={onChangeHandler}
-                       className={s.field}/>
+                       className={errorMessage?s.error:s.field}/>
                 {isPasswordButtonShow &&
-                    <button onClick={() => setShowPassword(!showPassword)}>{showPassword ? <EyeOff/> : <Eye/>}</button>}
+                    <button className={s.showPassword} onClick={() => setShowPassword(!showPassword)}>{showPassword ? <EyeOff/> : <Eye/>}</button>}
                 {isSearchButtonShow &&
                     <div>
-                        <button><Search/></button>
+                        <button className={s.showSearch}><Search/></button>
                         <button><Close/></button>
                     </div>
                 }
             </div>
 
             <div>
-                <Typography variant={'caption'} className={''}>{error}</Typography>
+                <Typography variant={'caption'} className={''}>{errorMessage}</Typography>
             </div>
         </div>
 
