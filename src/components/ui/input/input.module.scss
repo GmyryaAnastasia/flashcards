@@ -1,5 +1,5 @@
 .root {
-  width: 100%;
+  width: 50%;
 }
 
 .fieldContainer {
@@ -13,6 +13,8 @@
 }
 
 .field {
+  position: relative;
+
   padding: 6px 12px;
 
   font-size: 16px;
@@ -39,32 +41,37 @@
     border-color: var(--color-dark-300);
     outline: 1px solid var(--color-dark-300);
 
-    &.disabledLabel {
+    &.label {
       color: var(--color-dark-300);
+    }
+
+    &:active{
+      border-color: var(--color-light-100);
+      outline: 1px solid var(--color-light-100);
+
+      &::placeholder{
+        color: var(--color-light-100);
+      }
+    }
+
+    & .search{
+      padding: 6px 20px;
     }
   }
 
-
-}
-
-.error {
-  padding: 6px 12px;
-
-  font-size: 16px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 24px;
-  color: var(--color-danger-300);
-
-  background: transparent;
+&.error{
   border: 1px solid var(--color-dark-300);
   border-color: var(--color-danger-300);
-  border-radius: 2px;
 
-  &::placeholder {
+  &.errorLabel{
+    margin-bottom: 1px;
     color: var(--color-danger-300);
   }
 }
+
+}
+
+
 
 .showPassword {
   cursor: pointer;
@@ -72,7 +79,7 @@
   position: absolute;
   top: 50%;
   bottom: 50%;
-  left: 12%;
+  left: 23%;
   transform: translateY(-50%);
 
   width: 20px;
@@ -83,6 +90,10 @@
   background: transparent;
   border: 0;
   outline: 0;
+}
+
+.showSearchBox{
+  margin-right: 10px;
 }
 
 .showSearch {

@@ -5,7 +5,7 @@ import s from "./input.module.scss"
 import {useState} from "react";
 import EyeOff from "@/assets/eyeOff";
 import Eye from "@/assets/eye";
-import Close from "@/assets/close";
+
 
 type InputProps = {
     onValueChange?: (value: string) => void
@@ -13,9 +13,10 @@ type InputProps = {
     placeholder?: string
     errorMessage?: string
     title?: string
+    disabled: boolean
 } & ComponentPropsWithoutRef<'input'>
 
-export const Input = ({type, placeholder, errorMessage, title, onValueChange, onChange}: InputProps) => {
+export const Input = ({type, placeholder, errorMessage, title, onValueChange, onChange, disabled}: InputProps) => {
     const [showPassword, setShowPassword] = useState<boolean>(false)
     let isPasswordButtonShow = false
     let isSearchButtonShow = false
@@ -33,27 +34,27 @@ export const Input = ({type, placeholder, errorMessage, title, onValueChange, on
 
 
     return (
-
         <div className={s.root}>
-            <div>
-                <Typography variant={'body2'} className={s.label}>{title}</Typography>
-            </div>
+            {!isSearchButtonShow &&
+                <div>
+                    <Typography variant={'body2'} className={s.label}>{title}</Typography>
+                </div>}
             <div className={s.fieldContainer}>
                 <input type={showPassword ? 'text' : type} placeholder={placeholder} onChange={onChangeHandler}
-                       className={errorMessage?s.error:s.field}/>
+                       className={`${s.field} ${errorMessage && s.error}`} disabled={disabled}/>
                 {isPasswordButtonShow &&
-                    <button className={s.showPassword} onClick={() => setShowPassword(!showPassword)}>{showPassword ? <EyeOff/> : <Eye/>}</button>}
+                    <button className={s.showPassword} onClick={() => setShowPassword(!showPassword)}>{showPassword ?
+                        <EyeOff/> : <Eye/>}</button>}
                 {isSearchButtonShow &&
-                    <div>
+                    <div className={s.showSearchBox}>
                         <button className={s.showSearch}><Search/></button>
-                        <button><Close/></button>
                     </div>
                 }
             </div>
-
             <div>
-                <Typography variant={'caption'} className={''}>{errorMessage}</Typography>
+                <Typography variant={'caption'} className={s.errorLabel}>{errorMessage}</Typography>
             </div>
+
         </div>
 
     )
