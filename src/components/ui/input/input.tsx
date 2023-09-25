@@ -37,11 +37,11 @@ export const Input = ({type, placeholder, errorMessage, title, onValueChange, on
         <div className={s.root}>
             {!isSearchButtonShow &&
                 <div>
-                    <Typography variant={'body2'} className={s.label}>{title}</Typography>
+                    <Typography variant={'body2'} className={`${s.label} ${disabled? s.disabledLabel : s.label}`}>{title}</Typography>
                 </div>}
             <div className={s.fieldContainer}>
-                <input type={showPassword ? 'text' : type} placeholder={placeholder} onChange={onChangeHandler}
-                       className={`${s.field} ${errorMessage && s.error}`} disabled={disabled}/>
+                <input type={showPassword ? 'text' : type} placeholder={errorMessage?errorMessage:placeholder} onChange={onChangeHandler}
+                       className={`${s.field} ${errorMessage && s.error} ${isSearchButtonShow?s.fieldWithSearch:s.fieldWithOutSearch}`} disabled={disabled}/>
                 {isPasswordButtonShow &&
                     <button className={s.showPassword} onClick={() => setShowPassword(!showPassword)}>{showPassword ?
                         <EyeOff/> : <Eye/>}</button>}
