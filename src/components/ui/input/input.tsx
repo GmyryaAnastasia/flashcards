@@ -5,54 +5,58 @@ import s from "./input.module.scss"
 import {useState} from "react";
 import EyeOff from "@/assets/eyeOff";
 import Eye from "@/assets/eye";
-
+import clsx from 'clsx';
 
 type InputProps = {
     onValueChange?: (value: string) => void
     type?: string
     placeholder?: string
     errorMessage?: string
-    title?: string
-    disabled: boolean
+    label?: string
+    disabled?: boolean
 } & ComponentPropsWithoutRef<'input'>
 
-export const Input = ({type, placeholder, errorMessage, title, onValueChange, onChange, disabled}: InputProps) => {
+export const Input = ({type, placeholder, errorMessage, label, onValueChange, onChange, disabled}: InputProps) => {
     const [showPassword, setShowPassword] = useState<boolean>(false)
-    let isPasswordButtonShow = false
-    let isSearchButtonShow = false
-    if (type === 'password') {
-        isPasswordButtonShow = true
-    }
-    if (type === 'search') {
-        isSearchButtonShow = true
-    }
+    const isPasswordButtonShow = type === 'password'
+    const isSearchButtonShow = type === 'search'
+
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange(e)
         onValueChange(e.target.value)
     }
-
+    const classNames = {
+        root: clsx(s.root),
+        fieldContainer: clsx(s.fieldContainer),
+        field: clsx(s.field, errorMessage && s.error, isSearchButtonShow ? s.fieldWithSearch : s.fieldWithOutSearch,disabled&&s.disabledLabel),
+        label: clsx(s.label, disabled? s.disabledLabel : s.label),
+        errorLabel: clsx(s.errorLabel)
+    }
 
     return (
-        <div className={s.root}>
+        <div className={classNames.root}>
             {!isSearchButtonShow &&
                 <div>
-                    <Typography variant={'body2'} className={`${s.label} ${disabled? s.disabledLabel : s.label}`}>{title}</Typography>
+                    <Typography variant={'body2'}
+                                className={classNames.label}>{label}</Typography>
                 </div>}
-            <div className={s.fieldContainer}>
-                <input type={showPassword ? 'text' : type} placeholder={errorMessage?errorMessage:placeholder} onChange={onChangeHandler}
-                       className={`${s.field} ${errorMessage && s.error} ${isSearchButtonShow?s.fieldWithSearch:s.fieldWithOutSearch}`} disabled={disabled}/>
+            <div className={classNames.fieldContainer}>
+                <input type={showPassword ? 'text' : type} placeholder={errorMessage ? errorMessage : placeholder}
+                       onChange={onChangeHandler}
+                       className={classNames.field}
+                       disabled={disabled}/>
                 {isPasswordButtonShow &&
                     <button className={s.showPassword} onClick={() => setShowPassword(!showPassword)}>{showPassword ?
                         <EyeOff/> : <Eye/>}</button>}
                 {isSearchButtonShow &&
-                    <div className={s.showSearchBox}>
+                    <div>
                         <button className={s.showSearch}><Search/></button>
                     </div>
                 }
             </div>
             <div>
-                <Typography variant={'caption'} className={s.errorLabel}>{errorMessage}</Typography>
+                <Typography variant={'caption'} className={classNames.errorLabel}>{errorMessage}</Typography>
             </div>
 
         </div>

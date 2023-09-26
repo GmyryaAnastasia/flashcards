@@ -60,7 +60,6 @@
         color: var(--color-danger-300);
       }
     }
-
   }
 
   .fieldWithSearch {
@@ -73,12 +72,16 @@
   margin-bottom: 1px;
   color: var(--color-dark-100);
 
-  & .disabledLabel {
+
+}
+
+.disabledLabel {
+  color: var(--color-dark-300);
+
+  &::placeholder {
     color: var(--color-dark-300);
   }
 }
-
-
 
 .showPassword {
   cursor: pointer;
