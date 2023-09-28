@@ -10,7 +10,7 @@ export function App() {
             <Button>Hello</Button>
             <Card>fgfrbfb</Card>
             <Typography>Hello</Typography>
-            <Input type={'search'} placeholder={'input'} title={'input'}disabled={false} ></Input>
+            <Input type={'text'} placeholder={'input'} label={'input'} disabled={true} ></Input>
 
         </>
     )
