@@ -25,6 +25,7 @@ export const Text: Story = {
 }
 
 
+
 export const Password: Story = {
     args: {
         label: 'Label',
