@@ -34,6 +34,7 @@ export const Input = ({type, placeholder, errorMessage, label, onValueChange, on
         errorLabel: clsx(s.errorLabel)
     }
 
+
     return (
         <div className={classNames.root}>
             {!isSearchButtonShow &&
